@@ -9,27 +9,25 @@ import { DatasetId } from '../../models/dataset-id.enum';
 import { AppActions } from '../../state/app.actions';
 
 @Component({
-  selector: 'dh-rank-viewer',
-  templateUrl: './rank-viewer.component.html',
-  styleUrls: ['./rank-viewer.component.scss']
+	selector: 'dh-rank-viewer',
+	templateUrl: './rank-viewer.component.html',
+	styleUrls: ['./rank-viewer.component.scss'],
 })
 export class RankViewerComponent implements OnInit {
-  // @ts-ignore
-  @Select(AppState.selectedDataset) selectedDataset$: Observable<ProductRank[]>;
+	// @ts-ignore
+	@Select(AppState.selectedDataset) selectedDataset$: Observable<ProductRank[]>;
 
-  // @ts-ignore
-  @Select(AppState.selectedDatasetId) selectedDatasetId$: Observable<DatasetId>;
+	// @ts-ignore
+	@Select(AppState.selectedDatasetId) selectedDatasetId$: Observable<DatasetId>;
 
-  chartsOptions: ChartOptions = CHART_OPTIONS;
-  datasetIds: DatasetId[] = Object.values(DatasetId);
+	chartsOptions: ChartOptions = CHART_OPTIONS;
+	datasetIds: DatasetId[] = Object.values(DatasetId);
 
-  constructor(private readonly store: Store) { }
+	constructor(private readonly store: Store) {}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {}
 
-  onDatasetSelection(datasetId: DatasetId) {
-    this.store.dispatch(new AppActions.SelectDataset(DatasetId.BSR_FURNITURE));
-  }
-
+	onDatasetSelection(datasetId: DatasetId) {
+		this.store.dispatch(new AppActions.SelectDataset(datasetId));
+	}
 }

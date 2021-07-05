@@ -6,20 +6,20 @@ import { NgxsModule } from '@ngxs/store';
 import { AppState } from './state/app.state';
 import { environment } from '../environments/environment';
 import { ChartsModule } from 'ng2-charts';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgxsModule.forRoot([AppState], {
-      developmentMode: !environment.production
-    }),
-    ChartsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		NgxsModule.forRoot([AppState], {
+			developmentMode: !environment.production,
+		}),
+		NgxsReduxDevtoolsPluginModule.forRoot(),
+		ChartsModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

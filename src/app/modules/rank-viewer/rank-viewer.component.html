@@ -1,2 +1,6 @@
-<dh-rank-viewer-filters [datasetIds]="datasetIds" [selectedId]="(selectedDatasetId$ | async)" (datasetSelect)="onDatasetSelection($event)"></dh-rank-viewer-filters>
-<dh-rank-viewer-chart [chartOptions]="chartsOptions" [selectedDataset]="(selectedDataset$ | async)"></dh-rank-viewer-chart>
+<dh-rank-viewer-filters
+	[datasetIds]="datasetIds"
+	[selectedId]="selectedDatasetId$ | async"
+	(datasetSelect)="onDatasetSelection($event)"
+></dh-rank-viewer-filters>
+<dh-rank-viewer-chart [selectedDataset]="selectedDataset$ | async"></dh-rank-viewer-chart>
