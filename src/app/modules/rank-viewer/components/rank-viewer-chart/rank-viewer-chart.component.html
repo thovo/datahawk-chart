@@ -1,9 +1,25 @@
 <div class="chart">
-    <canvas baseChart
-            [datasets]="chartData"
-            [labels]="chartLabels"
-            [options]="chartOptions"
-            [legend]="false"
-            chartType="line">
-    </canvas>
+	<div class="chart__rank-filter">
+		<label for="select-filter" class="chart__rank-filter-label">Select a filter to change view</label>
+		<select
+			name="select-filter"
+			class="chart__rank-filter-select"
+			#filterList
+			(change)="onFilterChange(filterList.value)"
+		>
+			<option
+				*ngFor="let filter of filters"
+				[value]="filter.startIndex"
+				[selected]="filter.startIndex === selectedFilter.startIndex"
+			>
+				{{ filter.name }}
+			</option>
+		</select>
+	</div>
+	<div class="chart__wrapper">
+		<div class="chart__wrapper-inner">
+			<canvas #chart id="chart" height="600" width="0"></canvas>
+		</div>
+	</div>
+	<dh-table [tableData]="tableData$ | async"></dh-table>
 </div>

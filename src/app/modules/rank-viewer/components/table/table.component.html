@@ -1,0 +1,28 @@
+<div class="table" *ngIf="tableData">
+	<h2>Rank of products in this period</h2>
+	<table>
+		<thead>
+			<tr>
+				<th *ngFor="let header of tableData.headers; let i = index" [class.fixed-col]="i === 0">
+					<span *ngIf="i === 0">{{ header }}</span>
+					<span *ngIf="i > 0">{{ header | date: 'MMM d, y' }}</span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let row of tableData.rows">
+				<td *ngFor="let data of row; let j = index" [class.fixed-col]="j === 0">
+					<div class="table__col-value">
+						{{ data }}
+						<ng-container *ngIf="calculateChangeBetweenRank(data, row[j - 1]) as changeValue">
+							(
+							<span *ngIf="changeValue >= 0" class="table__rank--up">+{{ changeValue }}&#8599;</span>
+							<span *ngIf="changeValue < 0" class="table__rank--down">{{ changeValue }}&#8600;</span>
+							)
+						</ng-container>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
